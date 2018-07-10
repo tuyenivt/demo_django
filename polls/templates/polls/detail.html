@@ -1,0 +1,10 @@
+{% if question %}
+<label for="id">Id:</label>
+<p name="id">{{question.id}}</p>
+<label for="text">Text:</label>
+<p name="text">{{question.question_text}}</p>
+<label for="pubDate">Pub Date:</label>
+<p name="pubDate">{{question.pub_date}}</p>
+{% else %}
+<p>No poll is available</p>
+{% endif %}
