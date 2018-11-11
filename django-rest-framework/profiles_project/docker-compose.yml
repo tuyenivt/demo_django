@@ -1,9 +1,9 @@
 version: '3'
 services:
 
-    sampledjango:
-        build: ./profiles_project
-        image: sample_django_profiles_project:latest
+    profiles_project:
+        build: .
+        image: django_rest_profiles_project:latest
         ports:
         - 80:8000
         depends_on:
