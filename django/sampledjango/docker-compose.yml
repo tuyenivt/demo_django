@@ -2,7 +2,7 @@ version: '3'
 services:
 
     sampledjango:
-        build: .
+        build: ./sampledjango
         image: sample_django:latest
         ports:
         - 80:8000
