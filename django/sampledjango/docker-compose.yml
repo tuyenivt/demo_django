@@ -2,8 +2,8 @@ version: '3'
 services:
 
     sampledjango:
-        build: ./sampledjango
-        image: sample_django:latest
+        build: .
+        image: django_sampledjango:latest
         ports:
         - 80:8000
         depends_on:
