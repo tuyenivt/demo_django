@@ -24,6 +24,10 @@ class HomePageTests(TestCase):
   def setUp(self):
     self.user = get_user_model().objects.create(username='some_user')
 
+  def test_no_entry(self):
+    response = self.client.get('/')
+    self.assertContains(response, 'No blog entries yet.')
+
   def test_one_entry(self):
     Entry.objects.create(title='1-title', body='1-body', author=self.user)
     response = self.client.get('/')
