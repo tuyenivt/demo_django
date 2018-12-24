@@ -10,5 +10,7 @@
             {{ entry.body|linebreaks }}
         </p>
     </article>
+    {% empty %}
+    <p>No blog entries yet.</p>
     {% endfor%}
 {% endblock %}
