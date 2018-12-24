@@ -41,3 +41,13 @@ class HomePageTests(TestCase):
     self.assertContains(response, '1-title')
     self.assertContains(response, '1-body')
     self.assertContains(response, '2-title')
+
+class EntryViewTest(TestCase):
+
+  def setUp(self):
+    self.user = get_user_model().objects.create(username='some_user')
+    self.entry = Entry.objects.create(title='title-1', body='body-1', author=self.user)
+
+  def test_basic_view(self):
+    response = self.client.get(self.entry.get_absolute_url())
+    self.assertEqual(response.status_code, 200)
