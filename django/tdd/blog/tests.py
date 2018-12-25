@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
+from .forms import CommentForm
 from .models import Entry, Comment
 
 class EntryModelTest(TestCase):
@@ -79,3 +80,16 @@ class CommentModelTest(TestCase):
   def test_string_representation(self):
     comment = Comment(body='My comment body')
     self.assertEqual(str(comment), 'My comment body')
+
+class CommentFormTest(TestCase):
+
+  def setUp(self):
+    user = get_user_model().objects.create(username='some_user')
+    self.entry = Entry.objects.create(author=user, title='My entry title')
+
+  def test_init(self):
+    CommentForm(entry=self.entry)
+
+  def test_init_without_entry(self):
+    with self.assertRaises(KeyError):
+      CommentForm()
