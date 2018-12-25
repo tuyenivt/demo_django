@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django_webtest import WebTest
 from django.contrib.auth import get_user_model
 from .forms import CommentForm
 from .models import Entry, Comment
@@ -48,7 +49,7 @@ class HomePageTests(TestCase):
     self.assertContains(response, '1-body')
     self.assertContains(response, '2-title')
 
-class EntryViewTest(TestCase):
+class EntryViewTest(WebTest):
 
   def setUp(self):
     self.user = get_user_model().objects.create(username='some_user')
@@ -74,6 +75,10 @@ class EntryViewTest(TestCase):
   def test_comment_body_in_entry(self):
     response = self.client.get(self.entry.get_absolute_url())
     self.assertContains(response, self.comment.body)
+
+  def test_view_page(self):
+    page = self.app.get(self.entry.get_absolute_url())
+    self.assertEqual(len(page.forms), 1)
 
 class CommentModelTest(TestCase):
 
