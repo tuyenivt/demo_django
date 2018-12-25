@@ -52,6 +52,7 @@ class EntryViewTest(TestCase):
   def setUp(self):
     self.user = get_user_model().objects.create(username='some_user')
     self.entry = Entry.objects.create(title='title-1', body='body-1', author=self.user)
+    self.comment = Comment.objects.create(entry=self.entry, name='name-1', email='email-1@coloza.com', body='body-1')
 
   def test_basic_view(self):
     response = self.client.get(self.entry.get_absolute_url())
@@ -64,6 +65,14 @@ class EntryViewTest(TestCase):
   def test_body_in_entry(self):
     response = self.client.get(self.entry.get_absolute_url())
     self.assertContains(response, self.entry.body)
+
+  def test_comment_name_in_entry(self):
+    response = self.client.get(self.entry.get_absolute_url())
+    self.assertContains(response, self.comment.name)
+
+  def test_comment_body_in_entry(self):
+    response = self.client.get(self.entry.get_absolute_url())
+    self.assertContains(response, self.comment.body)
 
 class CommentModelTest(TestCase):
 
