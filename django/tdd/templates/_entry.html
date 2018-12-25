@@ -7,6 +7,11 @@
         {{ entry.body|linebreaks }}
     </p>
     <hr/>
+    <h5>Add a comment</h5>
+    <form method="POST">
+        {{ form.as_table }}
+        <input type="submit" value="Create Comment">
+    </form>
     <h4>Comments</h4>
     {% for comment in entry.comment_set.all %}
     <p><em>Posted by {{ comment.name }}</em></p>
