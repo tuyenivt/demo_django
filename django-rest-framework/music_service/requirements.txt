@@ -2,5 +2,5 @@ django==2.2.13
 djangorestframework==3.9.1
 djangorestframework-jwt==1.11.0
 gunicorn==19.9.0
-PyJWT==1.7.1
+PyJWT==2.4.0
 pytz==2018.7
